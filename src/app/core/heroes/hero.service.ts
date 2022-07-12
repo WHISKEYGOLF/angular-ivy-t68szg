@@ -44,6 +44,12 @@ export class HeroService {
   }
 
   getMockHeroResponse() {
+    return this.http
+      .get<Hero[]>('/heroes/mock-heroes.json')
+      .pipe(catchError(this.handleError));
+  }
+
+  initMockHeroes() {
     return this.http.get<Hero[]>('/heroes/mock-heroes.json').pipe(
       catchError(this.handleError),
       tap((heroData) => {
