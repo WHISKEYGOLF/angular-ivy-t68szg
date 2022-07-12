@@ -25,6 +25,7 @@ export class HeroesComponent implements OnInit {
     this.heroService.getMockHeroResponse().subscribe((heroData: Hero[]) => {
       this.heroes = heroData;
     });
+
   }
 
   onSelect(hero: Hero): void {

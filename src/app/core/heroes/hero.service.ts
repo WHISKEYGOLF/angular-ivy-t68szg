@@ -47,7 +47,8 @@ export class HeroService {
     return this.http.get<Hero[]>('/heroes/mock-heroes.json').pipe(
       catchError(this.handleError),
       tap((heroData) => {
-        alert(JSON.stringify(heroData));
+        this.heroList = heroData;
+        // alert(JSON.stringify(heroData));
       })
     );
   }
