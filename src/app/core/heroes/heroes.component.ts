@@ -18,7 +18,11 @@ export class HeroesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.heroService.$heroes.subscribe((heroData: Hero[]) => {
+    // this.heroService.$heroes.subscribe((heroData: Hero[]) => {
+    //   this.heroes = heroData;
+    // });
+
+    this.heroService.getMockHeroResponse().subscribe((heroData: Hero[]) => {
       this.heroes = heroData;
     });
   }

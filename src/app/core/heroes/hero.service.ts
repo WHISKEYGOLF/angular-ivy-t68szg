@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, of, Subject, tap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  of,
+  Subject,
+  tap,
+  throwError,
+} from 'rxjs';
 import { Hero } from './hero';
 import { HEROES } from './mock-heroes';
 import { MessageService } from '../../shared/message.service';
@@ -17,7 +25,7 @@ export class HeroService {
   constructor(
     private http: HttpClient,
     private messageService: MessageService
-    ) {}
+  ) {}
 
   addToHeroList(hero: Hero) {
     this.heroList = [...this.heroList, hero];
@@ -36,14 +44,12 @@ export class HeroService {
   }
 
   getMockHeroResponse() {
-    return this.http
-      .get<{ type: string; price: number }[]>('/heroes/mock-heroes.json')
-      .pipe(
-        catchError(this.handleError),
-        tap((priceData) => {
-          alert(JSON.stringify(priceData));
-        })
-      );
+    return this.http.get<Hero[]>('/heroes/mock-heroes.json').pipe(
+      catchError(this.handleError),
+      tap((heroData) => {
+        alert(JSON.stringify(heroData));
+      })
+    );
   }
 
   private handleError(errorRes: HttpErrorResponse): Observable<never> {
